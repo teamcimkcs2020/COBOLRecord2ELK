@@ -1,0 +1,5 @@
+DATETIME [0-9]{4,4}\/[0-9]{2,2}\/[0-9]{2,2}-[0-9]{2,2}:[0-9]{2,2}:[0-9]{2,2}\.[0-9]{2,2}
+BATCHID .{8,8}
+MSGID .{8,8}
+
+PATTERN01 %{DATETIME:date_time} %{BATCHID:batch_id} %{MSGID:msg_id}: %{GREEDYDATA:msg_txt}

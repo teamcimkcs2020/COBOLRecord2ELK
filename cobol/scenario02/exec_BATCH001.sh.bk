@@ -1,0 +1,23 @@
+#!/bin/sh
+
+batchID=BATCH001
+copybook=location_message.cpy
+inRecordFile=infile01.txt
+outLogFile=~/efs/cob_${batchID}.log
+
+for cnt in $(seq 5)
+do
+	echo ${cnt}
+	date_time=$(date +%Y%m%d_%H%M%S)
+	module=${batchID}
+	outRecordFile=temp_${batchID}_${date_time}.txt
+	outJsonFile=~/efs/cob_${batchID}_${date_time}.json
+
+	run.sh ${module} ${inRecordFile} ${outRecordFile} ${outJsonFile} ${copybook} >> ${outLogFile}
+
+	if [ -e ${outRecordFile} ] ; then
+		rm -f ${outRecordFile}
+	fi
+done
+
+
